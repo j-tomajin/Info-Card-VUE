@@ -1,0 +1,37 @@
+// sample
+
+// $colors: (
+//     primary: (
+//         100: hsl(220, 98%, 61%),
+//         200: hsl(24, 98%, 61%),
+//     ),
+//     neutral: (
+//         100: hsl(0, 0%, 98%),
+//         200: hsl(233deg, 11%, 84%),
+//         300: hsl(233, 14%, 35%),
+//     ),
+//     theme: (
+//         list-bg: hsl(0, 0%, 98%),
+//         bg: hsl(236, 33%, 92%),
+//         completed-task: hsl(233, 11%, 84%),
+//         text: hsl(236, 9%, 61%),
+//         list-text: hsl(235, 19%, 35%),
+//         box-shadow: rgba(0, 0, 0, 0.4) 1px 5px 10px,
+//     ),
+//     gradient: (
+//         bg: linear-gradient(45deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%))
+//     ),
+// )
+
+$colors: (
+    primary: (
+        linear: linear-gradient(to right, hsl(249, 99%, 64%), hsl(278, 94%, 30%)),
+        red: hsl(0, 100%, 66%),
+    ),
+    neutral: (
+        white: hsl(0, 0%, 100%),
+        l-gray-violet: hsl(270, 3%, 87%),
+        d-gray-violet: hsl(279, 6%, 55%),
+        v-dark-violet: hsl(278, 68%, 11%),
+    )
+)
