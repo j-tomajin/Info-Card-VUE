@@ -1,0 +1,9 @@
+@import './style.css';
+
+#app {
+  width: min(calc(100% - 2rem), 800px);
+  border: 1px solid red;
+  margin-inline: auto;
+
+  font-weight: normal;
+}
