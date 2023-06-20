@@ -6,15 +6,25 @@
 
             <!-- CARD INFORMATION -->
             <img :src="logo" alt="logo" class="logo info">
-            <div class="card-number info">0000 0000 0000 0000</div>
+            <div class="card-number info">
+                <p v-if="card_num == ''">0000 0000 0000 0000</p>
+                <p v-else>{{ card_num }}</p>
+            </div>
             <div class="user-name info">
                 <p v-if="user_name == ''">Jane Appleseed</p>
                 <p v-else>{{ user_name }}</p>
             </div>
-            <div class="exp-date info">00/00</div>
+            <div class="exp-date info">
+                <p v-if="month == '' || year == ''">00/00</p>
+                <p v-else>{{ month }}/{{ year }}</p>
+            </div>
         </div>
 
         <div class="back card">
+            <div class="cvc">
+                <p v-if="cvc == ''">000</p>
+                <p v-else>{{ cvc }}</p>
+            </div>
             <img :src="back" alt="back of the card" class="card-back">
         </div>
         
@@ -30,6 +40,12 @@
         name: 'Cards',
         props: {
             user_name: String,
+            card_num: String,
+            isValidCardNumber: Boolean,
+            isValidCardNumberLength: Boolean,
+            month: String,
+            year: String,
+            cvc: String,
         },
         data: function() {
             return {
@@ -47,13 +63,24 @@
         width: clampf(350, 800, 440);
     }
 
-    .front {
+    .hide {
+        display: none;
+    }
+
+    .front, .back {
         position: relative;
         color: var(--clr-neutral-white);
     }
-
+    
     .back {
         margin-inline-start: auto;
+    }
+    
+    .cvc {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 11%;
     }
 
     .info {
