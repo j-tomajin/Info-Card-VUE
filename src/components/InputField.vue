@@ -19,12 +19,13 @@
             <input 
                 type="text" 
                 v-model="card_num"
-                :class="[isValidCardNumber ? '' : 'error', 'input-default']"
+                :class="[isValidCardNumber ? '' : 'error', 'input-default', isValidCardNumberLength ? '' : 'error', 'input-default']"
                 id="card-number"
                 @keydown="separateInput"
                 placeholder="e.g 1234 5678 9123 000"
             />
             <p v-if="!isValidCardNumber" class="invalid">Wrong format, numbers only</p>
+            <p v-if="!isValidCardNumberLength" class="invalid">Must be 16 characters</p>
         </div>
 
         <!-- EXP-DATE && CVC -->
@@ -35,16 +36,20 @@
                     <input 
                         type="text" 
                         v-model="mm"
-                        class="month input-default"
+                        :class="[isWithinMonth ? '' : 'error', 'input-default', isValidMonth ? '' : 'error', 'input-default']"
                         placeholder="MM" 
                     />
                     <input 
                         type="text" 
                         v-model="yy"
-                        class="year input-default"
+                        :class="[isWithinYear ? '' : 'error', 'input-default', isValidYear ? '' : 'error', 'input-default']"
                         placeholder="YY" 
                     />
                 </div>
+                <p class="invalid">
+                    <span v-if="!isValidMonth || !isValidYear">Can't be blank</span>
+                    <span v-else-if="!isWithinMonth || !isWithinYear">Must be valid date</span>
+                </p>
             </div>
 
             <div class="cvc-field display">
@@ -52,13 +57,18 @@
                 <input 
                     type="text"
                     v-model="cvc"
-                    class="cvc input-default"
+                    :class="[isValidCvc ? '' : 'error', 'input-default', isValidCvcLength ? '' : 'error', 'input-default']"
                     placeholder="e.g 123"
                 >
+
+                <p class="invalid">
+                    <span v-if="!isValidCvc">Can't be blank</span>
+                    <span v-else-if="!isValidCvcLength">Must be 3 characters</span>
+                </p>
             </div>
         </div>
 
-        <input type="submit" />
+        <input type="submit" class="sbm-btn" value="Confirm" />
     </form>
 </template>
 
@@ -69,6 +79,13 @@
         props: {
             isValidName: Boolean,
             isValidCardNumber: Boolean,
+            isValidCardNumberLength: Boolean,
+            isValidMonth: Boolean,
+            isValidYear: Boolean,
+            isWithinMonth: Boolean,
+            isWithinYear: Boolean,
+            isValidCvc: Boolean,
+            isValidCvcLength: Boolean,
         },
         data: function() {
             return {
@@ -84,7 +101,7 @@
                 if (this.card_num.length > 0) {
 
                     if (this.card_num.length % 4 == 0) {
-                        this.card_num += " ";
+                        this.card_num += "    ";
                     }
                 }
             },
@@ -93,10 +110,9 @@
                 e.preventDefault()
                 
                 this.$emit('check-user-name', this.name)
-                
                 this.$emit('check-card-number', this.card_num)
-
-                this.name = ''
+                this.$emit('check-exp-date', this.mm, this.yy)
+                this.$emit('check-cvc', this.cvc)
             },
         }
     }
@@ -123,7 +139,7 @@
 
     .input-field-2 {
         display: flex;
-        align-items: center;
+        // align-items: center;
         gap: rem(16);
     }
 
@@ -167,5 +183,12 @@
 
     .invalid {
         color: var(--clr-primary-red);
+    }
+
+    .sbm-btn {
+        background-color: var(--clr-neutral-v-dark-violet);
+        color: var(--clr-neutral-l-gray-violet);
+        padding-block: rem(12);
+        border-radius: rem(8);
     }
 </style>
