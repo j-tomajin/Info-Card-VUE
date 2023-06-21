@@ -46,11 +46,12 @@ body {
   line-height: 1.5;
   min-height: 100%;
   margin: 0;
-  padding: 0;
+  padding-block: clamp(0rem, -5.5147058824rem + 23.5294117647vw, 6.25rem);
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   font-family: "Space Grotesk", sans-serif;
-  background-color: #333;
+  background-color: var(--clr-neutral-white);
 }
 
 /* Inherit fonts for inputs and buttons */
