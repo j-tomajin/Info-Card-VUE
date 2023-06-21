@@ -1,22 +1,23 @@
 <template>
     <div class="container">
-        
-        <div class="front card">
-            <img :src="front" alt="front of the card" class="card-front">
-
-            <!-- CARD INFORMATION -->
-            <img :src="logo" alt="logo" class="logo info">
-            <div class="card-number info">
-                <p v-if="card_num == ''">0000 0000 0000 0000</p>
-                <p v-else>{{ card_num }}</p>
-            </div>
-            <div class="user-name info">
-                <p v-if="user_name == ''">Jane Appleseed</p>
-                <p v-else>{{ user_name }}</p>
-            </div>
-            <div class="exp-date info">
-                <p v-if="month == '' || year == ''">00/00</p>
-                <p v-else>{{ month }}/{{ year }}</p>
+        <div class="front-container">
+            <div class="front card">
+                <img :src="front" alt="front of the card" class="card-front">
+    
+                <!-- CARD INFORMATION -->
+                <img :src="logo" alt="logo" class="logo info">
+                <div class="card-number info">
+                    <p v-if="card_num == ''">0000 0000 0000 0000</p>
+                    <p v-else>{{ card_num }}</p>
+                </div>
+                <div class="user-name info">
+                    <p v-if="user_name == ''">Jane Appleseed</p>
+                    <p v-else>{{ user_name }}</p>
+                </div>
+                <div class="exp-date info">
+                    <p v-if="month == '' || year == ''">00/00</p>
+                    <p v-else>{{ month }}/{{ year }}</p>
+                </div>
             </div>
         </div>
 
@@ -59,8 +60,24 @@
 
 <style lang="scss" scoped>
     @use '../assets/scss/utilities/' as *;
+
+    .container {
+        position: relative;
+    }
+
+    .front-container {
+        position: absolute;
+        z-index: 10;
+        top: 57%;
+
+        @include breakpointMin(medium-screen) {
+            position: unset;
+            margin-bottom: rem(32);
+        }
+    }
+
     .card {
-        width: clampf(350, 800, 440);
+        width: clampf(280, 1050, 420);
     }
 
     .hide {
@@ -80,7 +97,8 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        right: 11%;
+        right: 12%;
+        font-size: clampf(12, 800, 16);
     }
 
     .info {
@@ -90,12 +108,13 @@
     .logo {
         top: 10%;
         left: 5%;
+        width: clampf(60, 800, 85);
     }
 
     .card-number {
         left: 5%;
         top: 55%;
-        font-size: clampf(24, 800, 32 );
+        font-size: clampf(20, 1050, 32);
     }
 
     .user-name {
