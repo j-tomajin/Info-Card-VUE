@@ -6,7 +6,7 @@
     
         <div class="text">
             <h1>THANK YOU!</h1>
-            <p>We've added your card details</p>
+            <p class="sub">We've added your card details</p>
         </div>
     
         <Button 
@@ -44,5 +44,9 @@
         gap: rem(16);
 
         text-align: center;
+    }
+
+    .sub {
+        color: var(--clr-neutral-d-gray-violet);
     }
 </style>
