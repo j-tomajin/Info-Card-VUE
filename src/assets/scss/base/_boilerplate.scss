@@ -1,4 +1,6 @@
+@use '../utilities/' as *;
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap');
+
 /* BOILERPLATE */
 
 /* Set core root defaults */
@@ -41,13 +43,12 @@ body {
     line-height: 1.5;
     min-height: 100%;
     margin: 0;
-    padding: 0;
+    padding-block: clampf(0, 800, 100);
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     font-family: 'Space Grotesk', sans-serif;
-
-    // temp background-color
-    background-color: #333;
+    background-color: var(--clr-neutral-white);
 }
 
 /* Inherit fonts for inputs and buttons */
