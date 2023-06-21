@@ -191,4 +191,8 @@
         padding-block: rem(12);
         border-radius: rem(8);
     }
+
+    label {
+        font-size: clampf(12, 800, 18);
+    }
 </style>
