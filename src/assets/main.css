@@ -1,9 +1,24 @@
 @import './style.css';
 
+body {
+  background-image: url('../assets/images/bg-main-mobile.png');
+  background-size: 100%;
+  background-position-y: 0;
+  background-repeat: no-repeat;
+  
+}
+
 #app {
-  width: min(calc(100% - 2rem), 800px);
-  border: 1px solid red;
+  width: min(calc(100% - 2rem), 1050px);
   margin-inline: auto;
 
   font-weight: normal;
+}
+
+@media (min-width: 800px) {
+  body {
+      background-image: url(../assets/images/bg-main-desktop.png);
+      background-size: contain;
+      background-position-x: 0;
+  }
 }
